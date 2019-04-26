@@ -1,0 +1,54 @@
+//paths
+s_sceneFileList = "../fileLists/suncg_train.txt";	//batch process all scenes in file list
+s_suncgPath = "\\canis.vc.in.tum.de\Datasets\SUNCG\suncg_data\"; //suncg dataset location
+
+s_cameraPath = "D:\temp_result\suncg\cameras\"; //generate virtual cameara path in suncg scenes
+s_outputPath = "D:\temp_result\suncg\scene\"; //entire scene
+s_outputOBBPath = "D:\temp_result\suncg\obbs\";
+s_outputAABBPath = "D:\temp_result\suncg\aabbs\";
+s_outputImagePath = "D:\temp_result\suncg\images\";
+
+s_bDebugOut = true; // generate visualizations in output folder fro debugging
+
+//multiple views
+s_maxNumViews = 50; 						//max #views to take for a trajectory
+s_maxNumViewsToSample = 1000;				//max #views to try for a trajectory
+s_maxNumTrajectories = 1;//5;
+s_maxNumViewPerTraj = 1000;
+
+s_bGenerateCameras = true; //if false, it will read stored cameras from cameraPath
+s_bGenerateImages = true; 
+s_voxelSize = 0.046875f;	//in m //32voxels per 1.5m
+s_validObbOccThresh = 0.08f; // of surface
+
+//output types
+s_bGenerateOBBs = false;
+s_bGenerateAABBs = true;
+s_numAugmentPartial = 0;  // 0 for no partial data augmentation
+s_validObbMinNumOcc = 10; // must have at least 10 voxels for valid obb
+
+s_viewStatsFile = "../fileLists/summary-frames.csv";
+s_suncgLabelMapFile = "../fileLists/ModelCategoryMapping.csv";
+s_labelMapLabelName = "model_id";
+s_labelMapIdName = "index";
+
+//rendering
+s_renderWidth = 320;	// render width
+s_renderHeight = 240;	// render height
+s_BRDF = 0;				// 0-phong; 1-ward
+s_cameraFov = 60.0f; 	// degrees
+s_viewEvalMaxDepth = 6.0f;
+
+//noise model for depth -- TODO implement
+s_addNoiseToDepth = false;//true;
+s_depthNoiseSigma = 0.01f; //unused
+
+s_filterDepthMap = true; 	//bilateral filter depth map
+s_depthSigmaD = 5.0f;		//bilateral filter sigma domain
+s_depthSigmaR = 0.1f;		//bilateral filter sigma range
+
+//fusion parameters
+s_gridExtents = 1.5f 1.5f 1.5f; //1.5f 3.0f 1.5f;
+s_renderNear = 0.4f;		//in m
+s_renderFar = 12.0f;		//in m
+s_scenePadding = 16; 		//to match with df gen

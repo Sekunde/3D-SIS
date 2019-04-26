@@ -1,0 +1,1 @@
+int gpu_nms(THLongTensor* keep, THLongTensor* num_out, THCudaTensor*boxes, float nmb_overlap_thresh);

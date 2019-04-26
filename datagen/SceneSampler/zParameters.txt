@@ -1,0 +1,22 @@
+
+// paths
+s_sceneFileList = "../fileLists/scannet_test.txt";	//batch process all scenes in file list
+s_outputPath = "D:\temp_result\scannet_chunk";
+s_framePath = "D:\temp_result\scannet\images";
+s_scenePath = "D:\temp_result\scannet\scene"; //entire scene
+s_AABBPath = "D:\temp_result\scannet\aabbs";
+s_generateTrain = true; // generate training chunks, if false, generate test whole scenes
+
+s_numAugment = 2;
+s_bRotate90 = false;
+s_sampleFactor = 64;
+s_chunkDim = 96 48 96;
+s_voxelSize = 0.046875f;	//in m //32voxels per 1.5m
+s_suncgLabelMapFile = "../fileLists/ModelCategoryMapping.csv";
+s_suncgLabelMapFrom = "index";
+s_suncgLabelMapTo = "nyuv2_40class";
+s_nyuLabelMapFile = "../fileLists/nyu40_eigen13_labels.csv";
+s_nyuLabelMapFrom = "nyu40class";
+s_nyuLabelMapTo = "nyu40id";
+s_maxNumTrajectories = 1;
+s_maxNumNearestImages = 5;

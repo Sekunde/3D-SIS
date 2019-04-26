@@ -1,0 +1,40 @@
+s_sceneFileList = "../fileLists/scannet_test.txt";
+s_scanPath = "\\canis.vc.in.tum.de\Datasets\ScanNet\public\v1\scans"; //.sens files
+s_scanMeshPath = "\\canis.vc.in.tum.de\Datasets\ScanNet\public\v2\scans"; //.ply mesh files
+s_alnPath = "\\canis.vc.in.tum.de\Datasets\ScanNet\public\v2\scans_extra\alignments";
+s_scanLabelFile = "\\canis.vc.in.tum.de\Datasets\ScanNet\public\v2\scannet-labels.combined.tsv";
+s_outputImagePath = "D:\temp_result\scannet\images";
+s_outputPath = "D:\temp_result\scannet\scene"
+s_outputAABBPath = "D:\temp_result\scannet\aabbs"
+s_bDebugOut = false; // export some visualizations in the output paht for debug purpose, suggestion: run on one scene to debug to see the visual results.
+
+// map to nyu40 set
+s_labelName = "raw_category";
+s_labelIdName = "nyu40id";
+s_bGenerateTestOnly = false; //do not generate groundtruth data, used for benchmark
+s_numRotAug = 10;
+s_maxNumScenes = 0; // 0 for no max
+s_maxNumSens = 1;
+
+s_renderWidth = 320;	// render width
+s_renderHeight = 240;	// render height
+s_BRDF = 0;				// 0-phong; 1-ward
+s_cameraFov = 60.0f; 	// degrees
+
+s_minDepth = 0.4f;
+s_maxDepth = 6.0f;
+
+//noise model for depth -- TODO implement
+s_addNoiseToDepth = false;
+s_depthNoiseSigma = 0.01f;
+
+s_filterDepthMap = true; 	//bilateral filter depth map
+s_depthSigmaD = 5.0f;		//bilateral filter sigma domain
+s_depthSigmaR = 0.1f;		//bilateral filter sigma range
+
+//fusion parameters
+s_gridExtents = 1.5f 1.5f 1.5f; //1.5f 3.0f 1.5f;
+s_voxelSize = 0.046875f;	//in m //32voxels per 1.5m
+s_renderNear = 0.1f;		//in m
+s_renderFar = 10.0f;		//in m
+s_scenePadding = 16; 		//to match with df gen
