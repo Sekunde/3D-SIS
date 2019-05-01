@@ -46,6 +46,9 @@ Expected file structure:
 ### Installation
 Install dependencies ```pip install -r requirements.txt```
 
+### Demo Code
+You can run our demo code by `bash example.sh`, the visualization result is stored in `example_result/visualization`.
+
 ### Checkpoints
 We provide checkpoints for inference on test data. Download the
 * [ScanNet Benchmark Checkpoint (21MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_checkpoint.zip)
@@ -130,18 +133,18 @@ PRETRAINED_ENET_PATH: /mnt/local_datasets/ScanNet/scannetv2_enet.pth
       |--gt_insts
       |--scans
 ```
-3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `scannet_benchmark_validation_data/images` in the configuration file `experiments/cfgs/ScanNet/bencmark.yml`.
+3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `scannet_benchmark_validation_data/images` in the configuration file `experiments/cfgs/ScanNet/benchmark.yml`.
 4. Change the text file `experiments/filelists/ScanNet/v2/val_scene.txt` pointing to `scannet_benchmark_test_data/scenes/*.scene`.
 5. Run ```python main.py --cfg ScanNet/benchmark --mode benchmark --step 1205541 --gpu 0``` (predictions will be stored in `TEST_SAVE_DIR`)
 6. Transferring the predicted results to [ScanNet Benchmark Format](http://kaldir.vc.in.tum.de/scannet_benchmark/documentation#format-instance3d):
 ```
-python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir ./bencmark_result --scan_path scannet_benchmark_validation_data/scans --frames scannet_benchmark_validation_data/images
+python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir ./benchmark_result --scan_path scannet_benchmark_validation_data/scans --frames scannet_benchmark_validation_data/images
 ```
-7. Visualize the results, by run `python tools/scannet_benchmark/visualize_benchmark.py --output_dir ./bencmark_vis --result_dir ./benchmark_result --scan_path scannet_benchmark_validation_data/scans`. Visualiations are in pointcloud as following:
+7. Visualize the results, by run `python tools/scannet_benchmark/visualize_benchmark.py --output_dir ./benchmark_vis --result_dir ./benchmark_result --scan_path scannet_benchmark_validation_data/scans`. Visualiations are in pointcloud as following:
 
  <img src="http://i63.tinypic.com/2u8yvky.png" alt="3dsis" width="400"><img src="http://i68.tinypic.com/2e4khvc.png" alt="3dsis" width="420">
 
-8. Evaluate the results, by run `python tools/scannet_benchmark/evaluate_semantic_instance.py --pred_path ./benchmark_result --gt_path scannet_benchmark_validation_data/gt_insts --output_file ./bencmark_result.txt`
+8. Evaluate the results, by run `python tools/scannet_benchmark/evaluate_semantic_instance.py --pred_path ./benchmark_result --gt_path scannet_benchmark_validation_data/gt_insts --output_file ./benchmark_result.txt`
 
   (Hint: You can also submit to the [ScanNet Benchmark](http://kaldir.vc.in.tum.de/scannet_benchmark/semantic_instance_3d) using [ScanNet Benchmark Test Data](#download-test-data), but you need to remap the [labelset](http://kaldir.vc.in.tum.de/scannet_benchmark/documentation#label-set) after step.7 by running `python tools/scannet_benchmark/proj_label.py --pred_path benchmark_result`)
 
@@ -153,7 +156,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
       |--scenes
       |--images
 ```
-3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `suncg_test_data/images` in the configuration file `experiments/cfgs/ScanNet/bencmark.yml`.
+3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `suncg_test_data/images` in the configuration file `experiments/cfgs/ScanNet/benchmark.yml`.
 4. Change the text file `experiments/filelists/suncg/nonaug/test.txt` pointing to `suncg_test_data/scenes/*.scene`.
 5. Run ```python main.py --cfg SUNCG/rpn_class_mask_5 --mode test --step 956472 --gpu 0``` (predictions will be stored in `TEST_SAVE_DIR`)
 6. Visualize the results, by run `python tools/visualization.py --path TEST_SAVE_DIR --mode results` (visualizations will be stored in `TEST_SAVE_DIR` as *.ply* files)
@@ -162,7 +165,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
 ### Train your own model
 1. Generate training data, see [Data Generation](#data-generation)
 2. Generate the filelists pointing to your `.chunk` and `.scene` data.
-3. Copy `experiments/cfgs/ScanNet/bencmark.yml` to `experiments/cfgs/ScanNet/your_own.yml`
+3. Copy `experiments/cfgs/ScanNet/benchmark.yml` to `experiments/cfgs/ScanNet/your_own.yml`
 4. Setup `Filelists`, `Result folder` and `Enet` parts correspondingly in `your_own.yml`.
 5. Train the RPN and classification network. Setup the following parameters in `your_own.yml` and run `python main.py --cfg ScanNet/your_own --epoch 10 --gpu 0` for `200k` steps.
   ```yaml

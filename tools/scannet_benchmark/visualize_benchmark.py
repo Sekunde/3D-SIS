@@ -82,9 +82,12 @@ def main():
     res_folder = opt.result_dir
     ply_folder = opt.scan_path
     output_dir = opt.output_dir
+    os.makedirs(output_dir, exist_ok=True)
 
     reader_ins = Benchmark_reader(res_folder)
     for folder in os.listdir(res_folder):
+        if os.path.isdir(os.path.join(res_folder, folder)):
+            continue
         print(folder)
         # ply reader
         ply_file = os.path.join(ply_folder, folder.split('.')[0], folder.split('.')[0]+'_vh_clean_2.ply')

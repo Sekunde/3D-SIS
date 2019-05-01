@@ -1,0 +1,5 @@
+example_result/scannet_benchmark_example_data/scenes/scene0144_00__0__.scene
+example_result/scannet_benchmark_example_data/scenes/scene0378_00__0__.scene
+example_result/scannet_benchmark_example_data/scenes/scene0423_00__0__.scene
+example_result/scannet_benchmark_example_data/scenes/scene0427_00__0__.scene
+example_result/scannet_benchmark_example_data/scenes/scene0664_00__0__.scene

@@ -188,7 +188,7 @@ def evaluate_matches(matches):
                     try:
                         num_true_examples = y_true_sorted_cumsum[-1]
                     except:
-                        print(1111)
+                        print('')
                     precision         = np.zeros(num_prec_recall)
                     recall            = np.zeros(num_prec_recall)
 
