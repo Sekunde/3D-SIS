@@ -1,5 +1,5 @@
 # 3D-SIS: 3D Semantic Instance Segmentation of RGB-D Scans (CVPR2019 Oral)
-We present *3D-SIS*, a noval framework for 3d instance segmentation.
+We present *3D-SIS*, a new framework for 3d instance segmentation.
 
 <img src="http://i68.tinypic.com/205bklu.jpg" alt="3dsis" width="800">
 
@@ -18,7 +18,7 @@ We provide the test data (.scene and images) as examples. The detailed format of
 * [SUNCG Test Data (1355MB)](http://kaldir.vc.in.tum.de/3dsis/suncg_test_data.zip)
 
 ## Model Code
-The framework is implemeted in PyTorch 0.4.1. The rest dependencies can be found in [requirements.txt](https://github.com/Sekunde/3D-SIS/blob/master/requirements.txt).
+The framework is implemented in PyTorch 0.4.1. The rest dependencies can be found in [requirements.txt](https://github.com/Sekunde/3D-SIS/blob/master/requirements.txt).
 
 ### Folder Structure
 Expected file structure:
