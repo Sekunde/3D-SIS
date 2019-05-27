@@ -10,6 +10,12 @@ We present *3D-SIS*, a new framework for 3d instance segmentation.
 ## Data Generation
 Data generation code is detailed in [datagen](https://github.com/Sekunde/3D-SIS/tree/master/datagen).
 
+### Download Traininig Data
+
+The training data we generated is provided.
+* [ScanNet Training Chunks (70GB)](http://kaldir.vc.in.tum.de/3dsis/scannet_train_chunks.zip)
+* [ScanNet Training Images (13GB)](http://kaldir.vc.in.tum.de/3dsis/scannet_train_images.zip)
+
 ### Download Test Data
 We provide the test data (.scene and images) as examples. The detailed format of data, see [saveChunkToFile](https://github.com/Sekunde/3D-SIS/blob/master/datagen/SceneSampler/main.cpp#L348-L415). Download the
 * [ScanNet Benchmark Test Data (801MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_test_data.zip)
