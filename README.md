@@ -169,7 +169,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
 
 
 ### Train your own model
-1. Generate training data, see [Data Generation](#data-generation)
+1. Generate training data, see [Training Data](#download-traininig-data) or [Data Generation](#data-generation)
 2. Generate the filelists pointing to your `.chunk` and `.scene` data.
 3. Copy `experiments/cfgs/ScanNet/benchmark.yml` to `experiments/cfgs/ScanNet/your_own.yml`
 4. Setup `Filelists`, `Result folder` and `Enet` parts correspondingly in `your_own.yml`.
