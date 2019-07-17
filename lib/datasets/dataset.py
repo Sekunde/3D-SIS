@@ -141,12 +141,12 @@ class Dataset(Pytorch_Dataset):
             world2grid = np.linalg.inv(np.transpose(np.reshape(reader.read('float', 16), (4, 4), order='F')).astype(np.float32))
             (num_images,) = reader.read('uint32')
 
-            if cfg.BASE_IMAGE_PATH.endswith('augmented'):
+            if cfg.BASE_IMAGE_PATH.endswith('augmented') or cfg.BASE_IMAGE_PATH.endswith('augmented/'):
                 scene_name = os.path.basename(self.scenes[idx]).rsplit('_', 1)[0] if self.mode=='chunk' else os.path.basename(self.scenes[idx]).split('.')[0]
-            elif cfg.BASE_IMAGE_PATH.endswith('square'):
+            elif cfg.BASE_IMAGE_PATH.endswith('square') or cfg.BASE_IMAGE_PATH.endswith('square/'):
                 scene_name = os.path.basename(self.scenes[idx]).split('__')[0]
             else:
-                scene_name = os.path.basename(self.scenes[idx]).split('__')[0]
+                raise NotImplementedError
 
             if self.mode != 'chunk':
                 num_images = os.listdir(os.path.join(cfg.BASE_IMAGE_PATH, scene_name, 'depth'))
