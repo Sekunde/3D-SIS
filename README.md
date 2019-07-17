@@ -122,7 +122,7 @@ PRETRAINED_ENET_PATH: /mnt/local_datasets/ScanNet/scannetv2_enet.pth
 ```
    |--scannetv2_test_data/
       |--scenes
-      |--images
+      |--images_square (notice: do not change the name of this folder, since it is hardcoded in [Dataset](https://github.com/Sekunde/3D-SIS/blob/master/lib/datasets/dataset.py#L144-L149)
 ```
 3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `scannetv2_test_data/images` in the configuration file `experiments/cfgs/ScanNet/rpn_class_mask_5.yml`.
 4. Change the text file `experiments/filelists/ScanNet/v1/test.txt` pointing to `scannetv2_test_data/scenes/*.scene`.
@@ -135,7 +135,7 @@ PRETRAINED_ENET_PATH: /mnt/local_datasets/ScanNet/scannetv2_enet.pth
 ```
    |--scannet_benchmark_validation_data/
       |--scenes
-      |--images
+      |--images_square (notice: do not change the name of this folder, since it is hardcoded in [Dataset](https://github.com/Sekunde/3D-SIS/blob/master/lib/datasets/dataset.py#L144-L149)
       |--gt_insts
       |--scans
 ```
@@ -160,7 +160,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
 ```
    |--suncg_test_data/
       |--scenes
-      |--images
+      |--images_augmented (notice: do not change the name of this folder, since it is hardcoded in [Dataset](https://github.com/Sekunde/3D-SIS/blob/master/lib/datasets/dataset.py#L144-L149)
 ```
 3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `suncg_test_data/images` in the configuration file `experiments/cfgs/SUNCG/rpn_class_mask_5.yml`.
 4. Change the text file `experiments/filelists/suncg/nonaug/test.txt` pointing to `suncg_test_data/scenes/*.scene`.
