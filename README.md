@@ -162,7 +162,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
       |--scenes
       |--images
 ```
-3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `suncg_test_data/images` in the configuration file `experiments/cfgs/ScanNet/benchmark.yml`.
+3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `suncg_test_data/images` in the configuration file `experiments/cfgs/SUNCG/rpn_class_mask_5.yml`.
 4. Change the text file `experiments/filelists/suncg/nonaug/test.txt` pointing to `suncg_test_data/scenes/*.scene`.
 5. Run ```python main.py --cfg SUNCG/rpn_class_mask_5 --mode test --step 956472 --gpu 0``` (predictions will be stored in `TEST_SAVE_DIR`)
 6. Visualize the results, by run `python tools/visualization.py --path TEST_SAVE_DIR --mode results` (visualizations will be stored in `TEST_SAVE_DIR` as *.ply* files)
