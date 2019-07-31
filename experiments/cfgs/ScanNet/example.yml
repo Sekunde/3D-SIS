@@ -95,7 +95,7 @@ ONLY_IMAGES: False
 USE_IMAGES_GT: False
 
 NUM_IMAGES: 5
-BASE_IMAGE_PATH: 'example_result/scannet_benchmark_example_data/images'
+BASE_IMAGE_PATH: 'example_result/scannet_benchmark_example_data/images_square'
 
 IMAGE_TYPE: 'color'
 IMAGE_EXT: '.jpg'
