@@ -22,7 +22,7 @@ python main.py --cfg ScanNet/example --step 1205541 --output_dir example_result/
 
 # from voxel(sdf) to mesh vertices
 echo 'Voxel to Mesh'
-python tools/scannet_benchmark/vox2mesh.py --pred_dir example_result/test --output_dir example_result/benchmark_result --scan_path example_result/scannet_benchmark_example_data/scans --frames example_result/scannet_benchmark_example_data/images
+python tools/scannet_benchmark/vox2mesh.py --pred_dir example_result/test --output_dir example_result/benchmark_result --scan_path example_result/scannet_benchmark_example_data/scans --frames example_result/scannet_benchmark_example_data/images_square
 
 # generate visualization
 echo 'generate visualization'
