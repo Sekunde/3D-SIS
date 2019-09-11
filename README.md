@@ -1,7 +1,7 @@
 # 3D-SIS: 3D Semantic Instance Segmentation of RGB-D Scans (CVPR2019 Oral)
 We present *3D-SIS*, a new framework for 3d instance segmentation.
 
-<img src="http://i68.tinypic.com/205bklu.jpg" alt="3dsis" width="800">
+<img src="images/teaser.jpg" alt="3dsis" width="800">
 
 [Download Paper (.pdf)](https://arxiv.org/pdf/1812.07003.pdf)
 
@@ -148,7 +148,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
 ```
 7. Visualize the results, by run `python tools/scannet_benchmark/visualize_benchmark.py --output_dir ./benchmark_vis --result_dir ./benchmark_result --scan_path scannet_benchmark_validation_data/scans`. Visualiations are in pointcloud as following:
 
- <img src="http://i63.tinypic.com/2u8yvky.png" alt="3dsis" width="400"><img src="http://i68.tinypic.com/2e4khvc.png" alt="3dsis" width="420">
+ <img src="images/snapshot0.png" alt="3dsis" width="420"><img src="images/snapshot1.png" alt="3dsis" width="450">
 
 8. Evaluate the results, by run `python tools/scannet_benchmark/evaluate_semantic_instance.py --pred_path ./benchmark_result --gt_path scannet_benchmark_validation_data/gt_insts --output_file ./benchmark_result.txt`
 
