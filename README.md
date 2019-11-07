@@ -24,7 +24,7 @@ We provide the test data (.scene and images) as examples. The detailed format of
 * [SUNCG Test Data (1355MB)](http://kaldir.vc.in.tum.de/3dsis/suncg_test_data.zip)
 
 ## Model Code
-The framework is implemented in PyTorch 0.4.1 and tested with GTX 1080Ti/CUDA 8.0 enviroment. The rest dependencies can be found in [requirements.txt](https://github.com/Sekunde/3D-SIS/blob/master/requirements.txt).
+The framework is implemented in PyTorch 0.4.1 and tested with GTX 1080Ti/CUDA 8.0 enviroment (otherwise you may need to recompile NMS and RoIPooling layer under lib/layer_uitls/). The rest dependencies can be found in [requirements.txt](https://github.com/Sekunde/3D-SIS/blob/master/requirements.txt). 
 
 ### Folder Structure
 Expected file structure:
