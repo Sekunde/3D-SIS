@@ -23,8 +23,9 @@ We provide the test data (.scene and images) as examples. The detailed format of
 * [ScanNetV2 Test Data (3664MB)](http://kaldir.vc.in.tum.de/3dsis/scannetv2_test_data.zip)
 * [SUNCG Test Data (1355MB)](http://kaldir.vc.in.tum.de/3dsis/suncg_test_data.zip)
 
-## Model Code
-The framework is implemented in PyTorch 0.4.1 and tested with GTX 1080Ti/CUDA 8.0 enviroment (otherwise you may need to recompile `NMS` and `RoIPooling` layer under `lib/layer_utils/`). The rest dependencies can be found in [requirements.txt](https://github.com/Sekunde/3D-SIS/blob/master/requirements.txt). 
+## Installation
+Install dependencies ```pip install -r requirements.txt```
+Note: You may need to rebuild `NMS` and `RoIPooling` layer by running `python build.py` under `lib/layer_utils/nms` and `lib/layer_utils/roi_pooling` separately. The rest dependencies can be found in [requirements.txt](https://github.com/Sekunde/3D-SIS/blob/master/requirements.txt). 
 
 ### Folder Structure
 Expected file structure:
@@ -49,8 +50,7 @@ Expected file structure:
             |--val  
       |--SUNCG
    ```
-### Installation
-Install dependencies ```pip install -r requirements.txt```
+
 
 ### Demo Code
 You can run our demo code by `bash example.sh`, the visualization result is stored in `example_result/visualization`.
