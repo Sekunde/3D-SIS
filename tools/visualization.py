@@ -9,6 +9,7 @@ import pickle
 import sys
 sys.path.append('.')
 from lib.datasets.BinaryReader import BinaryReader
+from plyfile import PlyData, PlyElement
 
 # color palette for nyu40 labels
 def create_color_palette():
@@ -57,6 +58,23 @@ def create_color_palette():
     ]
 
 
+def read_ply(ply_file):
+    with open(ply_file, 'rb') as read_file:
+        ply_data = PlyData.read(read_file)
+
+    points = []
+    colors = []
+    indices = []
+    for x,y,z,r,g,b,a in ply_data['vertex']:
+        points.append([x,y,z])
+        colors.append([r,g,b])
+    for face in ply_data['face']:
+        indices.append([face[0][0], face[0][1], face[0][2]])
+    points = np.array(points)
+    colors = np.array(colors)
+    indices = np.array(indices)
+    return points, indices, colors
+
 def write_ply(verts, colors, indices, output_file):
     if colors is None:
         colors = np.zeros_like(verts)
@@ -82,7 +100,7 @@ def write_ply(verts, colors, indices, output_file):
         file.write('3 {:d} {:d} {:d}\n'.format(ind[0], ind[1], ind[2]))
     file.close()
 
-def write_bbox(bbox, output_file):
+def write_bbox(bbox, output_file=None):
     """
     bbox: np array (n, 7), last one is instance/label id
     output_file: string
@@ -183,7 +201,7 @@ def write_bbox(bbox, output_file):
         ]
         return edges
 
-    radius = 0.3
+    radius = 0.02
     offset = [0,0,0]
     verts = []
     indices = []
@@ -202,6 +220,10 @@ def write_bbox(bbox, output_file):
             verts.extend(cyl_verts)
             indices.extend(cyl_ind)
             colors.extend(cyl_color)
+
+    if output_file is None:
+        return verts, colors, indices
+
     write_ply(verts, colors, indices, output_file)
 
 def write_mask_pointcloud(mask, output_file):

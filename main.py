@@ -10,6 +10,7 @@ from lib.model.trainval import train
 from lib.model.trainval import test
 from lib.model.trainval import benchmark
 from lib.datasets.dataset import Dataset
+torch.backends.cudnn.enabled = False
 
 
 def parse_args():
