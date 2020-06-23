@@ -1,9 +1,9 @@
 import os
 import numpy as np
-from plyfile import PlyData, PlyElement
+import torch
 import sys
 sys.path.append('.')
-from tools.visualization import write_ply
+from tools.visualization import write_ply, read_ply, write_bbox
 import argparse
 
 # color palette for nyu40 labels
@@ -52,6 +52,7 @@ def create_color_palette():
        (100, 85, 144)
     ]
 
+
 class Benchmark_reader(object):
     def __init__(self, res_path):
         self.res_path = res_path
@@ -71,6 +72,20 @@ class Benchmark_reader(object):
                 ret_instances[idx]['label'] = label
             return ret_instances
 
+def coords_multiplication(A, B):
+    '''
+    A: 4x4
+    B: nx3
+    '''
+    
+    if isinstance(A, torch.Tensor):
+        device = torch.device("cuda:0" if A.get_device() != -1 else "cpu") 
+        B = torch.cat([B.t(), torch.ones((1, B.shape[0]), device=device)])
+        return torch.mm(A, B).t()[:,:3]
+    elif isinstance(A, np.ndarray):
+        B = np.concatenate([np.transpose(B), np.ones((1, B.shape[0]))])
+        return np.transpose(np.dot(A, B))[:,:3]
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--result_dir', default="./ScanNet_Benchmark_Result")
 parser.add_argument('--output_dir', default="./ScanNet_Benchmark_Result_Visualization")
@@ -89,23 +104,44 @@ def main():
         if os.path.isdir(os.path.join(res_folder, folder)):
             continue
         print(folder)
+
         # ply reader
         ply_file = os.path.join(ply_folder, folder.split('.')[0], folder.split('.')[0]+'_vh_clean_2.ply')
-        ply_data = PlyData.read(ply_file)
-        points = []
-        for point in ply_data.elements[0].data:
-            points.append([point[0], point[1], point[2]])
-        points = np.array(points)
-        colors = np.zeros_like(points)
+        alignment_file = os.path.join(ply_folder, folder.split('.')[0], folder.split('.')[0]+'.txt')
+        alignment = open(alignment_file).readlines()[0]
+        alignment = np.array([float(a_) for a_ in alignment.split()[2:]]).reshape(4, 4)
+        points, faces, _ = read_ply(ply_file)
+        colors = np.zeros_like(points) + np.array([64, 64, 96])
+        points = coords_multiplication(alignment, points)
 
         # instance reader
+        bbox_points = []
+        bbox_faces = []
+        bbox_colors = []
+        previous_ = 0
         instances = reader_ins[folder]
         for instance_idx, instance_key in enumerate(instances.keys()):
             r, g, b = create_color_palette()[int((instance_idx + 1)%41)]
-            colors[instances[instance_key]['points'].nonzero()[0].astype(np.int32)] = [r,g,b]
+
+            instance_points = points[instances[instance_key]['points'].nonzero()[0].astype(np.int32)]
+
+            # get bbox mesh
+            minx, miny, minz = np.min(instance_points, 0)
+            maxx, maxy, maxz = np.max(instance_points, 0)
+            ins_verts, ins_colors, ins_faces = write_bbox([[minx, miny, minz, maxx, maxy, maxz, int(instance_idx + 1)]], None)
+            bbox_points.extend(np.array(ins_verts))
+            bbox_faces.extend(np.array(ins_faces)+previous_)
+            bbox_colors.extend(np.array(ins_colors))
+            previous_ += len(ins_verts)
+
+            colors[instances[instance_key]['points'].nonzero()[0].astype(np.int32)] = [r/255.0,g/255.0,b/255.0]
 
         output_file = os.path.join(output_dir, folder.split('.')[0] + '.ply')
-        write_ply(points, colors, None, output_file)
+
+        bbox_points = np.array(bbox_points)
+        bbox_colors = np.array(bbox_colors)
+        bbox_faces = np.array(bbox_faces) + points.shape[0]
+        write_ply(np.concatenate([points, bbox_points]), np.concatenate([colors, bbox_colors]), np.concatenate([faces, bbox_faces]), output_file)
 
 if __name__ == '__main__':
     main()

@@ -11,7 +11,6 @@ from lib.model.trainval import test
 from lib.model.trainval import benchmark
 from lib.datasets.dataset import Dataset
 
-
 def parse_args():
     """parse input arguments"""
     parser = argparse.ArgumentParser(description='3D-SIS')

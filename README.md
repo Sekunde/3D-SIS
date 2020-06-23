@@ -27,6 +27,7 @@ We provide the test data (.scene and images) as examples. The detailed format of
 Install dependencies ```pip install -r requirements.txt```
 Note: You may need to rebuild `NMS` and `RoIPooling` layer by running `python build.py` under `lib/layer_utils/nms` and `lib/layer_utils/roi_pooling` separately. The rest dependencies can be found in [requirements.txt](https://github.com/Sekunde/3D-SIS/blob/master/requirements.txt). 
 
+The code is tested on Ubuntu 16.04 with CUDA8.0 and GTX1080Ti. If you encounter any CUDA/GPU issues, change the `MAX_VOLUME` and `MAX_IMAGE` in `lib/utils/config.py` to 0. This will enable inference on CPU.
 ### Folder Structure
 Expected file structure:
 
@@ -148,7 +149,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
 ```
 7. Visualize the results, by run `python tools/scannet_benchmark/visualize_benchmark.py --output_dir ./benchmark_vis --result_dir ./benchmark_result --scan_path scannet_benchmark_validation_data/scans`. Visualiations are in pointcloud as following:
 
- <img src="images/snapshot0.png" alt="3dsis" width="420"><img src="images/snapshot1.png" alt="3dsis" width="450">
+<p align=center> <img src="images/snapshot0.png" alt="3dsis" width="300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/snapshot1.png" alt="3dsis" width="305">
 
 8. Evaluate the results, by run `python tools/scannet_benchmark/evaluate_semantic_instance.py --pred_path ./benchmark_result --gt_path scannet_benchmark_validation_data/gt_insts --output_file ./benchmark_result.txt`
 
@@ -206,7 +207,7 @@ If you use this code please cite:
 ```
 @inproceedings{hou2019sis,
   title={3D-SIS: 3D Semantic Instance Segmentation of RGB-D Scans},
-  author={Ji, Hou and Dai, Angela and Nie{\ss}ner, Matthias},
+  author={Hou, Ji and Dai, Angela and Nie{\ss}ner, Matthias},
 	booktitle = {Proc. Computer Vision and Pattern Recognition (CVPR), IEEE},
 	year={2019}
 }
