@@ -5,7 +5,7 @@ easydict==1.9
 tqdm==4.29.0
 reprint==0.5.2
 plyfile==0.7
-tensorflow==1.4.0
+tensorflow==2.5.0
 pyyaml==3.13
 ipdb==0.11
 matplotlib==3.0.2
