@@ -18,9 +18,9 @@ The training data we generated is provided.
 
 ### Download Test Data
 We provide the test data (.scene and images) as examples. The detailed format of data, see [saveChunkToFile](https://github.com/Sekunde/3D-SIS/blob/master/datagen/SceneSampler/main.cpp#L348-L415). Download the
-* [ScanNet Benchmark Test Data (801MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_test_data.zip)
-* [ScanNet Benchmark Validation Data (746MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_validation_data.zip)
-* [ScanNetV2 Test Data (3664MB)](http://kaldir.vc.in.tum.de/3dsis/scannetv2_test_data.zip)
+* [ScanNetV2 Test Data (100 scenes) (801MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_test_data.zip)
+* [ScanNetV2 Validation Data (95 scenes) (746MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_validation_data.zip)
+* [ScanNetV2 Validation Data (312 scenes) (3664MB)](http://kaldir.vc.in.tum.de/3dsis/scannetv2_test_data.zip)
 * [SUNCG Test Data (1355MB)](http://kaldir.vc.in.tum.de/3dsis/suncg_test_data.zip)
 
 ## Installation
