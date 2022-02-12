@@ -16,8 +16,8 @@ The training data we generated is provided.
 * [ScanNet Training Chunks (70GB)](http://kaldir.vc.in.tum.de/3dsis/scannet_train_chunks.zip)
 * [ScanNet Training Images (13GB)](http://kaldir.vc.in.tum.de/3dsis/scannet_train_images.zip)
 
-### Download Test Data
-We provide the test data (.scene and images) as examples. The detailed format of data, see [saveChunkToFile](https://github.com/Sekunde/3D-SIS/blob/master/datagen/SceneSampler/main.cpp#L348-L415). Download the
+### Download Validation and Test Data
+We provide the test and validation data (.scene and images) as examples. The detailed format of data, see [saveChunkToFile](https://github.com/Sekunde/3D-SIS/blob/master/datagen/SceneSampler/main.cpp#L348-L415). Download the
 * [ScanNetV2 Test Data (100 scenes) (801MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_test_data.zip)
 * [ScanNetV2 Validation Data (95 scenes) (746MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_validation_data.zip)
 * [ScanNetV2 Validation Data (312 scenes) (3664MB)](http://kaldir.vc.in.tum.de/3dsis/scannetv2_test_data.zip)
@@ -119,20 +119,20 @@ PRETRAINED_ENET_PATH: /mnt/local_datasets/ScanNet/scannetv2_enet.pth
 
 ### Inference on ScanNetV2
 1. Download [ScanNet Checkpoint (v2 annotations, v1 split)](#checkpoints) to corresponding folder, see [Folder Structure](#folder-structure)
-2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNetV2 Test Data](#download-test-data) with following structure.
+2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNetV2 Validation Data (312 scenes)](#download-test-data) with following structure.
 ```
-   |--scannetv2_test_data/
+   |--scannetv2_validation_data/
       |--scenes
       |--images_square (notice: do not change the name of this folder, since it is hardcoded in [Dataset](https://github.com/Sekunde/3D-SIS/blob/master/lib/datasets/dataset.py#L144-L149)
 ```
-3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `scannetv2_test_data/images` in the configuration file `experiments/cfgs/ScanNet/rpn_class_mask_5.yml`.
-4. Change the text file `experiments/filelists/ScanNet/v1/test.txt` pointing to `scannetv2_test_data/scenes/*.scene`.
+3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `scannetv2_validation_data/images` in the configuration file `experiments/cfgs/ScanNet/rpn_class_mask_5.yml`.
+4. Change the text file `experiments/filelists/ScanNet/v1/test.txt` pointing to `scannetv2_validation_data/scenes/*.scene`.
 5. Run ```python main.py --cfg ScanNet/rpn_class_mask_5 --mode test --step 805146 --gpu 0``` (predictions will be stored in `TEST_SAVE_DIR`)
 6. Visualize the results, by run `python tools/visualization.py --path TEST_SAVE_DIR --mode results` (visualizations will be stored in `TEST_SAVE_DIR` as *.ply* files)
 
 ### ScanNet Benchmark
 1. Download [ScanNet Benchmark Checkpoint](#checkpoints) to corresponding folder, see [Folder Structure](#folder-structure)
-2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNet Benchmark Validation Data](#download-test-data) with following structure.
+2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNetV2 Validation Data (95 scenes)](#download-test-data) with following structure.
 ```
    |--scannet_benchmark_validation_data/
       |--scenes
@@ -141,7 +141,7 @@ PRETRAINED_ENET_PATH: /mnt/local_datasets/ScanNet/scannetv2_enet.pth
       |--scans
 ```
 3. Modify the `PRETRAINED_ENET_PATH` to enet checkpoint, `BASE_IMAGE_PATH` to `scannet_benchmark_validation_data/images` in the configuration file `experiments/cfgs/ScanNet/benchmark.yml`.
-4. Change the text file `experiments/filelists/ScanNet/v2/val_scene.txt` pointing to `scannet_benchmark_test_data/scenes/*.scene`.
+4. Change the text file `experiments/filelists/ScanNet/v2/val_scene.txt` pointing to `scannet_benchmark_validation_data/scenes/*.scene`.
 5. Run ```python main.py --cfg ScanNet/benchmark --mode benchmark --step 1205541 --gpu 0``` (predictions will be stored in `TEST_SAVE_DIR`)
 6. Transferring the predicted results to [ScanNet Benchmark Format](http://kaldir.vc.in.tum.de/scannet_benchmark/documentation#format-instance3d):
 ```
