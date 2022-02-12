@@ -18,7 +18,7 @@ The training data we generated is provided.
 
 ### Download Validation and Test Data
 We provide the test and validation data (.scene and images) as examples. The detailed format of data, see [saveChunkToFile](https://github.com/Sekunde/3D-SIS/blob/master/datagen/SceneSampler/main.cpp#L348-L415). Download the
-* [ScanNetV2 Test Data (100 scenes) (801MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_test_data.zip)
+* [ScanNetV2 Benchmark Test Data (100 scenes) (801MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_test_data.zip)
 * [ScanNetV2 Validation Data (95 scenes) (746MB)](http://kaldir.vc.in.tum.de/3dsis/scannet_benchmark_validation_data.zip)
 * [ScanNetV2 Validation Data (312 scenes) (3664MB)](http://kaldir.vc.in.tum.de/3dsis/scannetv2_test_data.zip)
 * [SUNCG Test Data (1355MB)](http://kaldir.vc.in.tum.de/3dsis/suncg_test_data.zip)
@@ -119,7 +119,7 @@ PRETRAINED_ENET_PATH: /mnt/local_datasets/ScanNet/scannetv2_enet.pth
 
 ### Inference on ScanNetV2
 1. Download [ScanNet Checkpoint (v2 annotations, v1 split)](#checkpoints) to corresponding folder, see [Folder Structure](#folder-structure)
-2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNetV2 Validation Data (312 scenes)](#download-test-data) with following structure.
+2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNetV2 Validation Data (312 scenes)](#download-validation-and-test-data) with following structure.
 ```
    |--scannetv2_validation_data/
       |--scenes
@@ -132,7 +132,7 @@ PRETRAINED_ENET_PATH: /mnt/local_datasets/ScanNet/scannetv2_enet.pth
 
 ### ScanNet Benchmark
 1. Download [ScanNet Benchmark Checkpoint](#checkpoints) to corresponding folder, see [Folder Structure](#folder-structure)
-2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNetV2 Validation Data (95 scenes)](#download-test-data) with following structure.
+2. Download [ScanNet Enet Checkpoint](#checkpoints) and [ScanNetV2 Validation Data (95 scenes)](#download-validation-and-test-data) with following structure.
 ```
    |--scannet_benchmark_validation_data/
       |--scenes
@@ -153,7 +153,7 @@ python tools/scannet_benchmark/vox2mesh.py --pred_dir TEST_SAVE_DIR --output_dir
 
 8. Evaluate the results, by run `python tools/scannet_benchmark/evaluate_semantic_instance.py --pred_path ./benchmark_result --gt_path scannet_benchmark_validation_data/gt_insts --output_file ./benchmark_result.txt`
 
-  (Hint: You can also submit to the [ScanNet Benchmark](http://kaldir.vc.in.tum.de/scannet_benchmark/semantic_instance_3d) using [ScanNet Benchmark Test Data](#download-test-data), but you need to remap the [labelset](http://kaldir.vc.in.tum.de/scannet_benchmark/documentation#label-set) after step.7 by running `python tools/scannet_benchmark/proj_label.py --pred_path benchmark_result`)
+  (Hint: You can also submit to the [ScanNet Benchmark](http://kaldir.vc.in.tum.de/scannet_benchmark/semantic_instance_3d) using [ScanNet Benchmark Test Data](#download-validation-and-test-data), but you need to remap the [labelset](http://kaldir.vc.in.tum.de/scannet_benchmark/documentation#label-set) after step.7 by running `python tools/scannet_benchmark/proj_label.py --pred_path benchmark_result`)
 
 ### Inference on SUNCG dataset
 1. Download the [SUNCG Checkpoint](#checkpoints) to corresponding folder, see [Folder Structure](#folder-structure)
